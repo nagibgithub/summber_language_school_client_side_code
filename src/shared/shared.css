@@ -1,0 +1,27 @@
+.navActive{
+    @apply
+    navBar
+    /* border-base-content */
+}
+
+.navPending{
+    @apply
+    navBar
+    /* border-base-300 */
+}
+
+.navInActive{
+    @apply
+    navBar
+    /* border-base-100 */
+}
+
+.navBar{
+    @apply
+    px-3
+    font-semibold
+    border-2
+    py-2
+    rounded-xl
+}
+

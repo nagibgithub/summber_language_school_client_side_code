@@ -7,12 +7,16 @@ import router from './routes/routes';
 import { HelmetProvider } from 'react-helmet-async';
 import AuthProvider from './contexts/AuthProvider';
 import './pages/login_register/loginRegister.css';
+import './shared/shared.css';
+import ThemeProvider from './contexts/ThemeProvider';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>
   </React.StrictMode>,

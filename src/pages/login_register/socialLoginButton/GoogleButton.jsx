@@ -9,7 +9,7 @@ const GoogleButton = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    console.log(location);
+    // console.log(location);
 
     const { auth } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
