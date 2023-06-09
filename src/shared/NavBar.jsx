@@ -6,14 +6,15 @@ const NavBar = () => {
 
     const navOption = [
         { title: 'Home', path: '/' },
-        { title: 'Log In', path: '/login' },
+        { title: 'Instructors', path: '/instructors' },
+        { title: 'Classes', path: '/classes' }
     ]
 
     const navBar = navOption.map((nav, index) => <li key={index}><Link to={nav.path}>{nav.title}</Link></li>);
 
     return (
         <div className="navbar bg-base-100">
-            
+
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -25,17 +26,17 @@ const NavBar = () => {
                 </div>
                 <Link to={'/'}><img className="w-20" src="/logo.png" alt="Language Logo" /></Link>
             </div>
-            
+
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navBar}
                 </ul>
             </div>
-            
+
             <div className="navbar-end">
                 <Link to={'login'} className="btn">Log In</Link>
             </div>
-            
+
         </div>
     );
 };

@@ -77,8 +77,6 @@ const Login = () => {
                                     {/* Google Button */}
                                     <GoogleButton></GoogleButton>
 
-
-
                                 </form>
                             </div>
                         </div>
