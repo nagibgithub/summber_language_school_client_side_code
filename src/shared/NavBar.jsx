@@ -3,22 +3,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeProvider";
+import { AuthContext } from "../contexts/AuthProvider";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
 
     const { setTheme, theme } = useContext(ThemeContext);
+    const handleDayNight = event => {
+        setTheme(event.target.checked);
+    };
+
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You wnat to Log Out",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Log Out!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut();
+                Swal.fire(
+                    'Log Out!',
+                    'You are Log Out successfully',
+                    'success'
+                )
+            }
+        })
+    }
 
     const navOption = [
         { title: 'Home', path: '/' },
         { title: 'Instructors', path: '/login' },
         { title: 'Classes', path: '/register' }
-    ]
+    ];
 
     const navBar = navOption.map((nav, index) => <li key={index}><NavLink to={nav.path} className={({ isActive, isPending }) => isActive ? `navActive ${theme ? "border-white" : "border-[#1F3865]"}` : isPending ? `navPending ${theme ? "border-[#aaaaaa]" : "border-white"}` : `navInActive ${theme ? "border-[#1F3865]" : "border-white"}`}>{nav.title}</NavLink></li>);
 
-    const handleDayNight = event => {
-        setTheme(event.target.checked);
-    };
 
     return (
         <div className="navbar" style={theme ? { backgroundColor: "#1F3865", color: "white" } : { backgroundColor: "white", color: "#1F3865" }}>
@@ -57,7 +81,15 @@ const NavBar = () => {
 
                     </label>
                 </div>
-                <Link to={'login'} className="btn">Log In</Link>
+                {
+                    user ?
+                        <>
+                            <img className="w-20 mask mask-circle" src={user.photoURL} alt="user" />
+                            <button className="btn" onClick={handleLogOut}>Log Out</button>
+                        </>
+                        :
+                        <Link to={'login'} className="btn">Log In</Link>
+                }
             </div>
 
         </div>

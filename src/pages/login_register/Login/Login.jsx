@@ -1,23 +1,28 @@
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleButton from "../socialLoginButton/GoogleButton";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 
 const Login = () => {
+
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const { signIn } = useContext(AuthContext);
+    const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
 
     const handleShowPassword = event => setShowPassword(event.target.checked);
 
-    const handleLogIn = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
+    const handleLogIn = data => {
+        setErrorMessage('')
+        signIn(data.email, data.password).then(() => { reset(); navigate('/') }).catch(error => setErrorMessage(error.message));
     }
 
     return (
@@ -34,7 +39,7 @@ const Login = () => {
                         </div>
                         <div className="max-w-sm w-full mx-auto">
                             <div className="card w-full shadow-2xl bg-base-100">
-                                <form onSubmit={handleLogIn} className="card-body">
+                                <form onSubmit={handleSubmit(handleLogIn)} className="card-body">
 
 
                                     {/* Email */}
@@ -42,7 +47,7 @@ const Login = () => {
                                         <label className="label" htmlFor="email">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input type="text" placeholder="email" name="email" id="email" className="input input-bordered" required />
+                                        <input type="text" placeholder="email" {...register("email")} id="email" className="input input-bordered" required />
                                     </div>
 
                                     {/* password */}
@@ -51,7 +56,7 @@ const Login = () => {
                                             <span className="label-text">Password</span>
                                             <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                                         </label>
-                                        <input type={showPassword ? "text" : "password"} placeholder="password" name="password" id="password" className="input input-bordered" required />
+                                        <input type={showPassword ? "text" : "password"} placeholder="password" {...register("password")} id="password" className="input input-bordered" required />
                                     </div>
 
                                     {/* show password checkbox */}
@@ -60,6 +65,11 @@ const Login = () => {
                                             <span className="label-text">Show Password</span>
                                             <input onClick={handleShowPassword} defaultChecked={false} type="checkbox" className="checkbox checkbox-info" />
                                         </label>
+                                    </div>
+
+                                    {/* error message */}
+                                    <div className="form-control">
+                                        <h1 hidden={false} className="text-red-600 text-lg text-center font-bold">{errorMessage}</h1>
                                     </div>
 
                                     {/* submit button */}
