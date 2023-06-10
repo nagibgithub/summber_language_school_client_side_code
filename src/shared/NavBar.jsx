@@ -36,8 +36,8 @@ const NavBar = () => {
         { title: 'Classes', path: '/classes' }
     ];
 
-    const navBar = navOption.map((nav, index) => <li key={index}><NavLink to={nav.path} className={({ isActive, isPending }) => isActive ? `navActive ${theme ? "border-white" : "border-[#1F3865]"}` : isPending ? `navPending ${theme ? "border-[#aaaaaa]" : "border-white"}` : `navInActive ${theme ? "border-[#1F3865]" : "border-white"}`}>{nav.title}</NavLink></li>);
-
+    const dashBoardOption = <li><NavLink to={'/dashboard'} className={({ isActive, isPending }) => isActive ? `navActive ${theme ? "border-white" : "border-[#1F3865]"}` : isPending ? `navPending ${theme ? "border-[#aaaaaa]" : "border-white"}` : `navInActive ${theme ? "border-[#1F3865]" : "border-white"}`}>Dashboard</NavLink></li>
+    const navBar = <>{navOption.map((nav, index) => <li key={index}><NavLink to={nav.path} className={({ isActive, isPending }) => isActive ? `navActive ${theme ? "border-white" : "border-[#1F3865]"}` : isPending ? `navPending ${theme ? "border-[#aaaaaa]" : "border-white"}` : `navInActive ${theme ? "border-[#1F3865]" : "border-white"}`}>{nav.title}</NavLink></li>)}{user && dashBoardOption}</>;
 
     return (
         <div className="navbar" style={theme ? { backgroundColor: "#1F3865", color: "white" } : { backgroundColor: "white", color: "#1F3865" }}>
@@ -47,7 +47,7 @@ const NavBar = () => {
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <FontAwesomeIcon icon={faBars} size="xl" />
                     </label>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-sm z-40 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {navBar}
                     </ul>
                 </div>
