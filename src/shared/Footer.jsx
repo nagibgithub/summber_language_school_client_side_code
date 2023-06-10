@@ -4,7 +4,6 @@ import { ThemeContext } from "../contexts/ThemeProvider";
 const Footer = () => {
 
     const { theme } = useContext(ThemeContext);
-    console.log(theme);
 
 
     return (

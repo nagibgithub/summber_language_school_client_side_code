@@ -47,7 +47,7 @@ const Login = () => {
                                         <label className="label" htmlFor="email">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input type="text" placeholder="email" {...register("email")} id="email" className="input input-bordered" required />
+                                        <input type="text" placeholder="email" {...register("email")} id="email" autoComplete="username" className="input input-bordered" required />
                                     </div>
 
                                     {/* password */}
@@ -56,7 +56,7 @@ const Login = () => {
                                             <span className="label-text">Password</span>
                                             <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                                         </label>
-                                        <input type={showPassword ? "text" : "password"} placeholder="password" {...register("password")} id="password" className="input input-bordered" required />
+                                        <input type={showPassword ? "text" : "password"} placeholder="password" {...register("password")} autoComplete="current-password" id="password" className="input input-bordered" required />
                                     </div>
 
                                     {/* show password checkbox */}

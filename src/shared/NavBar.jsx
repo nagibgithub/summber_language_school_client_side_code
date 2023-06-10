@@ -26,19 +26,14 @@ const NavBar = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 logOut();
-                Swal.fire(
-                    'Log Out!',
-                    'You are Log Out successfully',
-                    'success'
-                )
             }
         })
     }
 
     const navOption = [
         { title: 'Home', path: '/' },
-        { title: 'Instructors', path: '/login' },
-        { title: 'Classes', path: '/register' }
+        { title: 'Instructors', path: '/instructors' },
+        { title: 'Classes', path: '/classes' }
     ];
 
     const navBar = navOption.map((nav, index) => <li key={index}><NavLink to={nav.path} className={({ isActive, isPending }) => isActive ? `navActive ${theme ? "border-white" : "border-[#1F3865]"}` : isPending ? `navPending ${theme ? "border-[#aaaaaa]" : "border-white"}` : `navInActive ${theme ? "border-[#1F3865]" : "border-white"}`}>{nav.title}</NavLink></li>);

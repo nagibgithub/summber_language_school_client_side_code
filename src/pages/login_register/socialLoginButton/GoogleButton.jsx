@@ -14,7 +14,17 @@ const GoogleButton = () => {
     const { auth } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
 
-    const googleHandler = () => signInWithPopup(auth, googleProvider).then(() => navigate(from, { replace: true })).catch(error => console.log(error));
+    const googleHandler = () => signInWithPopup(auth, googleProvider).then((res) => {
+        const loggegUser = { name: res.user.displayName, email: res.user.email, img: res.user.photoURL };
+        fetch('https://b712-summer-camp-server-side.vercel.app/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(loggegUser)
+        }).then(res => res.json).catch(error => console.log(error));
+        navigate(from, { replace: true })
+    }).catch(error => console.log(error));
 
 
 
