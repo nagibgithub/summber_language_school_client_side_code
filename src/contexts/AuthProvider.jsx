@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -30,6 +31,13 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (loggedInUser) => {
             setUser(loggedInUser);
+            if (loggedInUser) {
+                axios.post('https://b712-summer-camp-server-side.vercel.app/jwt', { email: loggedInUser.email }).then(data => {
+                    localStorage.setItem('secret-code', data.data.code);
+                });
+            } else {
+                localStorage.removeItem('secret-code');
+            }
             setLoading(false)
         });
         return () => {

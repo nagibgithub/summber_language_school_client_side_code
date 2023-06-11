@@ -52,13 +52,13 @@ const UserTable = ({ user, refetc }) => {
                     </div>
                 </div>
             </th>
-            <td>{name}</td>
+            <td className="capitalize">{name}</td>
             <td>{email}</td>
-            <td className="grid grid-cols-2 items-center justify-center">{user_type}</td>
+            <td className="uppercase font-bold" style={user_type == "student" ? { color: "green" } : user_type == "instructor" ? { color: "blue" } : user_type == "admin" ? { color: "red" } : { color: "black" }}>{user_type}</td>
             <td>
                 <div className="grid gap-3">
-                    <button onClick={() => handleInstructor(_id)} className="btn btn-neutral" disabled={user_type == "instructor" ? true : false}>Instructor</button>
-                    <button onClick={() => handleAdmin(_id)} className="btn btn-neutral" disabled={user_type == "admin" ? true : false}>Admin</button>
+                    <button onClick={() => handleInstructor(_id)} className="btn btn-neutral" disabled={user_type == "instructor" ? true : false}>Make Instructor</button>
+                    <button onClick={() => handleAdmin(_id)} className="btn btn-neutral" disabled={user_type == "admin" ? true : false}>Make Admin</button>
                 </div>
             </td>
             <td className="text-center"><button onClick={() => handleUserDelete(_id)}><FontAwesomeIcon style={{ color: "#ff0000" }} icon={faTrash} /></button></td>

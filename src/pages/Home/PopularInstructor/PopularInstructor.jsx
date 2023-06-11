@@ -7,7 +7,7 @@ const PopularInstructor = () => {
     const [instructorData, setInstructorData] = useState([]);
 
     useEffect(() => {
-        fetch('https://b712-summer-camp-server-side.vercel.app/fakeData').then(res => res.json()).then(data => setInstructorData(data));
+        fetch('https://b712-summer-camp-server-side.vercel.app/instructor').then(res => res.json()).then(data => setInstructorData(data));
     }, []);
 
     return (

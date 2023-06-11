@@ -1,19 +1,17 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import UserTable from "./UserTable";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
 
-    const [loading, setLoading] = useState(true);
 
-    const { data: users = [] , refetch} = useQuery(['users'], async () => {
-        setLoading(true);
-        const res = await fetch('https://b712-summer-camp-server-side.vercel.app/users');
-        setLoading(false);
-        return res.json();
-    });
+    const [axiosSecure] = useAxiosSecure();
+    const { data: users = [], isLoading: loading, refetch } = useQuery(['users'], async () => {
+        const res = await axiosSecure.get('/users')
+        return res.data;
+    })
 
     return (
         <div>

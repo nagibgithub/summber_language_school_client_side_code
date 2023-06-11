@@ -104,7 +104,7 @@ const Register = () => {
                                         <label className="label" htmlFor="name">
                                             <span className="">Full Name</span>
                                         </label>
-                                        <input type="text" placeholder="Your Full Name" {...register("name")} id="name" className="input input-bordered" required />
+                                        <input type="text" placeholder="Your Full Name" {...register("name")} id="name" className="input input-bordered capitalize" required />
                                     </div>
 
                                     {/* email */}
