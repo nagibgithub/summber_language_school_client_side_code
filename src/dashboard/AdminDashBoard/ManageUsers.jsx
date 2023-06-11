@@ -1,8 +1,7 @@
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery } from "@tanstack/react-query";
 import UserTable from "./UserTable";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../../components/Loading";
 
 const ManageUsers = () => {
 
@@ -17,7 +16,7 @@ const ManageUsers = () => {
         <div>
             {
                 loading ?
-                    <h1 className="text-center text-5xl font-bold text-sky-600">Loading <FontAwesomeIcon icon={faSpinner} spin /></h1>
+                    <Loading></Loading>
                     :
                     <>
                         <div>

@@ -6,10 +6,6 @@ import StudentDashboard from "../StudentDashboard/StudentDashboard";
 
 const DashBoard = () => {
     const [user_type, isAdminLoading] = useAdmin();
-    !isAdminLoading ? console.log(user_type) : console.log('loading');
-
-
-    // const isAdmin 
 
     return (
         <div>
