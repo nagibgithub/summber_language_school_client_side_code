@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import InstructorCard from "./InstructorCard";
 import SectionTitle from "../../../components/SectionTitle";
+import InstructorCard from "../../../components/InstructorCard";
 
 const PopularInstructor = () => {
 

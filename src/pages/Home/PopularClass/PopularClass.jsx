@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ClassCard from "./ClassCard";
 import SectionTitle from "../../../components/SectionTitle";
+import ClassCard from "../../../components/ClassCard";
 
 const PopularClass = () => {
 

@@ -1,6 +1,7 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import ClassCard from "../../components/ClassCard";
 
 const Classes = () => {
 
@@ -20,7 +21,7 @@ const Classes = () => {
                 loading ?
                     <h1 className="text-center text-5xl font-bold text-sky-600">Loading data <FontAwesomeIcon icon={faSpinner} spin /></h1>
                     :
-                    <h1>{classes.length}</h1>
+                    classes.map(pd => <ClassCard key={pd._id}></ClassCard>)
             }
         </div>
     );

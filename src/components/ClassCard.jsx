@@ -2,7 +2,7 @@
 const ClassCard = () => {
     return (
         <div>
-            Class Card
+            this is ClassCard
         </div>
     );
 };

@@ -2,7 +2,7 @@
 const InstructorCard = () => {
     return (
         <div>
-            Instructor Card
+            this is InstructorCard
         </div>
     );
 };
