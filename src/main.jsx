@@ -9,13 +9,18 @@ import AuthProvider from './contexts/AuthProvider';
 import './pages/login_register/loginRegister.css';
 import './shared/shared.css';
 import ThemeProvider from './contexts/ThemeProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
       <AuthProvider>
         <ThemeProvider>
-          <RouterProvider router={router} />
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
         </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>

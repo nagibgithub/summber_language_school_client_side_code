@@ -79,7 +79,7 @@ const NavBar = () => {
                 {
                     user ?
                         <>
-                            <img className="w-20 mask mask-circle" src={user.photoURL} alt="user" />
+                            <img className="w-16 mask mask-circle" src={user.photoURL} alt="user" />
                             <button className="btn" onClick={handleLogOut}>Log Out</button>
                         </>
                         :

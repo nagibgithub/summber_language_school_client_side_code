@@ -5,6 +5,11 @@ import InstructorAddClass from "./InstructorAddClass";
 
 const InstructorDashBoard = () => {
     const [activeTab, setActiveTab] = useState(1);
+
+
+
+
+
     return (
         <div>
             <Helmet><title>Summer School | Instructor Dashboard</title></Helmet>

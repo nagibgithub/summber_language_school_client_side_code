@@ -1,13 +1,13 @@
-import InstructorDashBoard from "../InstructorDashBoard/InstructorDashBoard";
+import AdminDashBoard from "../AdminDashBoard/AdminDashBoard";
 
 const DashBoard = () => {
 
 
-
+// const isAdmin 
 
     return (
         <div>
-            <InstructorDashBoard></InstructorDashBoard>
+            <AdminDashBoard></AdminDashBoard>
         </div>
     );
 };
