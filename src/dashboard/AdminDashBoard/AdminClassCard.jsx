@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const AdminClassCard = ({ classData, refetc }) => {
 
-    const { description, duration, email, image, name, insName, price, seats, status, _id, feedback } = classData;
+    const { description, duration, email, image, name, insName, price, seats, status, _id, feedback, enroll } = classData;
     const refetch = refetc;
     const handleApproved = id => {
         fetch(`https://b712-summer-camp-server-side.vercel.app/class/approved/${id}`, { method: 'PATCH' }).then(res => res.json()).then(data => {
@@ -42,9 +42,10 @@ const AdminClassCard = ({ classData, refetc }) => {
                     <p>{email}</p>
                 </div>
                 <div>
-                    <h2 className="card-title">Price ${price}</h2>
-                    <h2 className="card-title">Available Seats: {seats}</h2>
-                    <h2 className="card-title">Status: <span className="capitalize font-bold" style={status == 'pending' ? { color: 'orange' } : status == 'approved' ? { color: 'green' } : status == 'deny' ? { color: 'red' } : { color: 'black' }}>{status}</span></h2>
+                    <h2 className="text-sm font-bold">Price ${price}</h2>
+                    <h2 className="text-sm font-bold">Enrolled Students: <span style={!enroll || enroll == 0 ? { color: 'red' } : { color: 'blue' }}>{!enroll ? 0 : enroll}</span></h2>
+                    <h2 className="text-sm font-bold">Available Seats: <span style={seats == 0 ? { color: 'red' } : { color: 'blue' }}>{seats}</span></h2>
+                    <h2 className="text-sm font-bold">Status: <span className="capitalize font-bold" style={status == 'pending' ? { color: 'orange' } : status == 'approved' ? { color: 'green' } : status == 'deny' ? { color: 'red' } : { color: 'black' }}>{status}</span></h2>
 
                 </div>
                 <div className="card-actions justify-end flex flex-col">

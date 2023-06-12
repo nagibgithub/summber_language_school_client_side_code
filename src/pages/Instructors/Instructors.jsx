@@ -21,7 +21,11 @@ const Instructors = () => {
                 loading ?
                     <h1 className="text-center text-5xl font-bold text-sky-600">Loading <FontAwesomeIcon icon={faSpinner} spin /></h1>
                     :
-                    instructors.map(pd => <InstructorCard key={pd._id}></InstructorCard>)
+                    <div className="grid grid-cols-2 gap-3">
+                        {
+                            instructors.map(pd => <InstructorCard key={pd._id} instructor={pd}></InstructorCard>)
+                        }
+                    </div>
             }
         </div>
     );
