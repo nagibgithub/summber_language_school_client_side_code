@@ -9,6 +9,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import DashBoard from "../dashboard/DashBoard/DashBoard";
 import ClassFeedback from "../dashboard/AdminDashBoard/ClassFeedback";
+import InstructorClassUpdate from "../dashboard/InstructorDashBoard/InstructorClassUpdate";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
             { path: "/instructors", element: <Instructors /> },
             { path: "/classes", element: <Classes /> },
             { path: "/classes/:id", element: <ClassFeedback /> },
+            { path: "/classes/update/:id", element: <InstructorClassUpdate />, loader: ({ params }) => fetch(`https://b712-summer-camp-server-side.vercel.app/class/update/${params.id}`) },
             { path: "/dashboard", element: <DashBoard /> },
         ]
     },

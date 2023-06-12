@@ -1,26 +1,30 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../contexts/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loading from "../../components/Loading";
+import InstructorClassCard from "./InstructorClassCard";
 
 const InstructorMyClass = () => {
 
-    const { user, loading } = useContext(AuthContext);
-
-    const [myClasses, setMyClasses] = useState([]);
-    useEffect(() => {
-        !loading ?
-            user ?
-                fetch(`http://localhost:3000/class?email=${user.email}`).then(res => res.json()).then(data => setMyClasses(data))
-                :
-                setMyClasses([])
-            :
-            setMyClasses([])
-    }, [user, loading]);
+    const [axiosSecure] = useAxiosSecure();
+    const { data: classes = [], isLoading: loading } = useQuery(['classes'], async () => {
+        const res = await axiosSecure.get('/instructor/class')
+        return res.data;
+    });
 
 
 
     return (
-        <div>
-            {myClasses.length}
+        <div className="my-5">
+            {
+                loading ?
+                    <Loading></Loading>
+                    :
+                    <div className="grid gap-3">
+                        {
+                            classes.map(pd => <InstructorClassCard key={pd._id} classData={pd}></InstructorClassCard>)
+                        }
+                    </div>
+            }
         </div>
     );
 };
