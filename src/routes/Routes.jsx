@@ -8,6 +8,7 @@ import ErrorPage from "../error-page";
 import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import DashBoard from "../dashboard/DashBoard/DashBoard";
+import ClassFeedback from "../dashboard/AdminDashBoard/ClassFeedback";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
             { path: "/register", element: <Register /> },
             { path: "/instructors", element: <Instructors /> },
             { path: "/classes", element: <Classes /> },
+            { path: "/classes/:id", element: <ClassFeedback /> },
             { path: "/dashboard", element: <DashBoard /> },
         ]
     },

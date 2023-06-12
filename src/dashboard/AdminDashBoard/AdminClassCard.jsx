@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AdminClassCard = ({ classData, refetc }) => {
 
-    const { description, duration, email, image, name, insName, price, seats, status, _id } = classData;
+    const { description, duration, email, image, name, insName, price, seats, status, _id, feedback } = classData;
     const refetch = refetc;
     const handleApproved = id => {
         fetch(`https://b712-summer-camp-server-side.vercel.app/class/approved/${id}`, { method: 'PATCH' }).then(res => res.json()).then(data => {
@@ -49,23 +50,22 @@ const AdminClassCard = ({ classData, refetc }) => {
                 <div className="card-actions justify-end flex flex-col">
                     <button onClick={() => handleApproved(_id)} disabled={status !== 'pending' ? true : false} className="btn btn-success w-2/3 mx-auto">Approve</button>
                     <button onClick={() => handleDenyed(_id)} disabled={status !== 'pending' ? true : false} className="btn btn-error w-2/3 mx-auto">Deny</button>
-                    <label htmlFor={`my_modal_${_id}`} className="btn w-2/3 btn-neutral mx-auto">Feedback</label>
+                    {
+                        feedback ?
+                            <label htmlFor={`modal-${_id}`} className="btn btn-neutral w-2/3 mx-auto">Show Your feedback</label>
+                            :
+                            <Link to={`/classes/${_id}`} className="btn btn-neutral w-2/3 mx-auto"><button className="">Feedback</button></Link>
+                    }
                 </div>
             </div>
-            {/* modal */}
-            {/* The button to open modal */}
-
             {/* Put this part before </body> tag */}
-            <input type="checkbox" id={`my_modal_${_id}`} className="modal-toggle" />
+            <input type="checkbox" id={`modal-${_id}`} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">{name}</h3>
-                    <form>
-                        <input type="text" className="border-2 border-red-500 bg-amber-500"/>
-                        <input type="submit" value="Send" />
-                    </form>
+                    <p className="py-4">{feedback}</p>
                     <div className="modal-action">
-                        <label htmlFor={`my_modal_${_id}`} className="btn">Close!</label>
+                        <label htmlFor={`modal-${_id}`} className="btn">Close!</label>
                     </div>
                 </div>
             </div>
