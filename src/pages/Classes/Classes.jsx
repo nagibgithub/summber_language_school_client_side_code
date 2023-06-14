@@ -2,6 +2,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import ClassCard from "../../components/ClassCard";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
 
@@ -16,21 +17,25 @@ const Classes = () => {
     }, []);
 
     return (
-        <div className="my-10">
-            {
-                loading ?
-                    <h1 className="text-center text-5xl font-bold text-sky-600">Loading data <FontAwesomeIcon icon={faSpinner} spin /></h1>
-                    :
-                    <>
-                    <h1 className="text-xl font-bold text-center my-2">Total Number of Approved Classes: {classes.length}</h1>
-                    <div className="grid grid-cols-2 justify-center items-center gap-3">
-                        {
-                            classes.map(pd => <ClassCard key={pd._id} classData={pd}></ClassCard>)
-                        }
-                    </div>
+
+        <>
+        <Helmet><title>Summer School | Classes</title></Helmet>
+            <div className="my-10">
+                {
+                    loading ?
+                        <h1 className="text-center text-5xl font-bold text-sky-600">Loading data <FontAwesomeIcon icon={faSpinner} spin /></h1>
+                        :
+                        <>
+                            <h1 className="text-xl font-bold text-center my-2">Total Number of Approved Classes: {classes.length}</h1>
+                            <div className="grid grid-cols-2 justify-center items-center gap-3">
+                                {
+                                    classes.map(pd => <ClassCard key={pd._id} classData={pd}></ClassCard>)
+                                }
+                            </div>
                         </>
-            }
-        </div>
+                }
+            </div>
+        </>
     );
 };
 
