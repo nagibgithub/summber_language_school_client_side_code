@@ -1,14 +1,9 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const StudentClass = ({ classData, refetc }) => {
-
-    // console.log(classData.classId);
-    // const [axiosSecure] = useAxiosSecure();
-    // const { data: classInfo = [], isLoading: loading } = useQuery(['class'], async () => {
-    //     const res = await axiosSecure.get(`/class/student/${classData.classId}`)
-    //     return res.data;
-    // });
 
     const [classInfo, setClassInfo] = useState({});
     const refetch = refetc;
@@ -18,22 +13,31 @@ const StudentClass = ({ classData, refetc }) => {
             .then(res => res.json()).then(data => setClassInfo(data))
     }, [classData]);
 
-    const { duration, email, image, name, insName, price, seats, _id } = classInfo;
+    const { duration, email, image, name, insName, price, seats } = classInfo;
 
     const handleDelete = id => {
-        fetch(`https://b712-summer-camp-server-side.vercel.app/student/class/${id}`, { method: 'DELETE' }).then(res => res.json()).then(data => {
-            if (data.deletedCount) {
-                refetch();
-                Swal.fire({ icon: "success", title: `${name} is delete now` })
-            } else {
-                Swal.fire({ icon: "error", title: "something is going wrond maybe" })
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You want to Delete ${name}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://b712-summer-camp-server-side.vercel.app/student/class/${id}`, { method: 'DELETE' }).then(res => res.json()).then(data => {
+                    if (data.deletedCount) {
+                        refetch();
+                        Swal.fire({ icon: "success", title: `${name} is delete now` })
+                    } else {
+                        Swal.fire({ icon: "error", title: "something is going wrond maybe" })
+                    }
+                })
             }
         })
     }
 
-    const handlePayment = id => {
-        console.log(id);
-    }
 
     return (
         <div>
@@ -52,12 +56,12 @@ const StudentClass = ({ classData, refetc }) => {
                             <p>{email}</p>
                         </div>
                         <div>
-                            <h2 className="font-bold">Price ${price}</h2>
+                            <h2 className="font-bold">Class Status: <span className="capitalize text-yellow-500">{classData.status}</span></h2>
+                            <h2 className="font-bold">Price <span className="text-red-500">${price}</span></h2>
                             <h2 className="font-bold">Available Seats: <span style={seats == 0 ? { color: 'red' } : { color: 'blue' }}>{seats}</span></h2>
                         </div>
-                        <div className="grid gap-3">
-                            <button onClick={() => handlePayment(_id)} className="btn btn-success">Pay</button>
-                            <button onClick={() => handleDelete(classData._id)} className="btn btn-warning">Delete</button>
+                        <div className="w-2/3 flex justify-end">
+                            <button onClick={() => handleDelete(classData._id)} className="btn btn-error"><FontAwesomeIcon icon={faTrash} /></button>
                         </div>
                     </div>
                 </div>

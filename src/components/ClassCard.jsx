@@ -33,7 +33,7 @@ const ClassCard = ({ classData }) => {
 
 
             if (user_type == 'student') {
-                const data1 = { email: user.email, classId: _id };
+                const data1 = { email: user.email, classId: _id, price: price, className: name };
                 fetch(`https://b712-summer-camp-server-side.vercel.app/student/class`, {
                     method: 'POST',
                     headers: {
