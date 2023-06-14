@@ -8,7 +8,7 @@ const PopularClass = () => {
     const [classesData, setClassesData] = useState([]);
 
     useEffect(() => {
-        fetch('https://b712-summer-camp-server-side.vercel.app/class/top').then(res => res.json()).then(data => setClassesData(data.slice(0, 6)));
+        fetch('https://b712-summer-camp-server-side.vercel.app/class/top').then(res => res.json()).then(data => setClassesData(data));
     }, []);
 
 

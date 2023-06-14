@@ -19,8 +19,7 @@ const InstructorClassUpdate = () => {
     const { register, handleSubmit } = useForm();
 
     const handleClassForm = data => {
-        console.log(data);
-        fetch(`http://localhost:3000/class/update/${_id}`, {
+        fetch(`https://b712-summer-camp-server-side.vercel.app/class/update/${_id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)

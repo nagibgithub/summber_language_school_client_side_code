@@ -23,6 +23,7 @@ const router = createBrowserRouter([
             { path: "/register", element: <Register /> },
             { path: "/instructors", element: <Instructors /> },
             { path: "/classes", element: <Classes /> },
+            // { path: "/classes/select/:id", element: <ClassSelect />, loader: ({ params }) => fetch(`https://b712-summer-camp-server-side.vercel.app/user_type/${params.id}`) },
             { path: "/classes/:id", element: <ClassFeedback /> },
             { path: "/classes/update/:id", element: <InstructorClassUpdate />, loader: ({ params }) => fetch(`https://b712-summer-camp-server-side.vercel.app/class/update/${params.id}`) },
             { path: "/dashboard", element: <PrivateRoute><DashBoard /></PrivateRoute> },

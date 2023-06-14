@@ -9,7 +9,6 @@ const ClassFeedback = () => {
     const handleFeedback = event => {
         event.preventDefault();
         const feedbackValue = event.target.feedback.value;
-        console.log(feedbackValue);
         fetch(`https://b712-summer-camp-server-side.vercel.app/class/feedback/${id}`, {
             method: 'PATCH',
             headers: {
