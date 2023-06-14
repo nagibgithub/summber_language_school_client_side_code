@@ -95,7 +95,7 @@ const CheckoutForm = ({ price, classData }) => {
                 noOfClass: classData.length,
                 classID: classData.map(item => item._id),
                 status: 'class pending',
-                className: classData.map(item => item.className)
+                enrolledClassName: classData.map(item => item.selectedClassName)
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {

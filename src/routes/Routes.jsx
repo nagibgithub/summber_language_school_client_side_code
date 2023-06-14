@@ -12,6 +12,7 @@ import ClassFeedback from "../dashboard/AdminDashBoard/ClassFeedback";
 import InstructorClassUpdate from "../dashboard/InstructorDashBoard/InstructorClassUpdate";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../dashboard/StudentDashboard/payment/payment";
+import PaymentHistory from "../dashboard/StudentDashboard/Payment/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
             { path: "/instructors", element: <Instructors /> },
             { path: "/classes", element: <Classes /> },
             { path: "/payment", element: <PrivateRoute><Payment /></PrivateRoute> },
+            { path: "/payment/history", element: <PrivateRoute><PaymentHistory /></PrivateRoute> },
             { path: "/classes/:id", element: <ClassFeedback /> },
             { path: "/classes/update/:id", element: <InstructorClassUpdate />, loader: ({ params }) => fetch(`https://b712-summer-camp-server-side.vercel.app/class/update/${params.id}`) },
             { path: "/dashboard", element: <PrivateRoute><DashBoard /></PrivateRoute> },

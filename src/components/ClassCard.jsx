@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const ClassCard = ({ classData }) => {
 
-    const { duration, image, name, insName, price, seats, _id } = classData;
+    const { duration, image, name, insName, price, seats, email, _id } = classData;
     const { user } = useAuth();
     const [user_type, isAdminLoading] = useUserType();
     const navigate = useNavigate();
@@ -29,11 +29,16 @@ const ClassCard = ({ classData }) => {
             alert('user email is not found')
         } else {
 
-
-
-
             if (user_type == 'student') {
-                const data1 = { email: user.email, classId: _id, price: price, className: name };
+                const data1 = {
+                    email: user.email,
+                    selectedClassName: name,
+                    image: image,
+                    price: price,
+                    insEmail: email,
+                    insName: insName,
+                    classId: _id
+                };
                 fetch(`https://b712-summer-camp-server-side.vercel.app/student/class`, {
                     method: 'POST',
                     headers: {
@@ -56,29 +61,6 @@ const ClassCard = ({ classData }) => {
         }
 
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
